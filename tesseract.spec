@@ -1,4 +1,6 @@
-Summary:	Tesseract Open Source OCR Engine.
+# NOTE
+# - warnings at compile stage about pointer size on amd64
+Summary:	Tesseract Open Source OCR Engine
 Name:		tesseract
 Version:	1.02
 Release:	1
@@ -7,6 +9,7 @@ Group:		Applications/Graphics
 Source0:	http://dl.sourceforge.net/tesseract-ocr/%{name}-%{version}.tar.gz
 # Source0-md5:	473389c9f447b081ac199ba3a0e55b27
 URL:		http://sourceforge.net/projects/tesseract-ocr
+BuildRequires:	automake
 BuildRequires:	libtiff-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -19,6 +22,7 @@ UNLV. It was open-sourced by HP and UNLV in 2005.
 %setup -q
 
 %build
+cp -f /usr/share/automake/config.sub config
 %configure
 %{__make}
 
