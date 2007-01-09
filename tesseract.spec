@@ -2,7 +2,7 @@ Summary:	Tesseract Open Source OCR Engine.
 Name:		tesseract
 Version:	1.02
 Release:	1
-License:	Apache 2.0
+License:	Apache Software License v2
 Group:		Applications/Graphics
 Source0:	http://dl.sourceforge.net/tesseract-ocr/%{name}-%{version}.tar.gz
 # Source0-md5:	473389c9f447b081ac199ba3a0e55b27
