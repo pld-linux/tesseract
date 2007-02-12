@@ -1,7 +1,7 @@
 # NOTE
 # - warnings at compile stage about pointer size on amd64
 Summary:	Tesseract Open Source OCR Engine
-Summary(pl):	Tesseract - silnik OCR o otwartych ºrÛd≥ach
+Summary(pl.UTF-8):   Tesseract - silnik OCR o otwartych ≈∫r√≥d≈Çach
 Name:		tesseract
 Version:	1.02
 Release:	1
@@ -19,10 +19,10 @@ A commercial quality OCR engine originally developed at HP between
 1985 and 1995. In 1995, this engine was among the top 3 evaluated by
 UNLV. It was open-sourced by HP and UNLV in 2005.
 
-%description -l pl
-Silnik OCR o komercyjnej jako∂ci oryginalnie stworzony przez HP w
-latach 1985-1995. W 1995 roku by≥ jednym z 3 najlepszych wg UNLV.
-¨rÛd≥a zosta≥y uwolnione przez HP i UNLV w 2005 roku.
+%description -l pl.UTF-8
+Silnik OCR o komercyjnej jako≈õci oryginalnie stworzony przez HP w
+latach 1985-1995. W 1995 roku by≈Ç jednym z 3 najlepszych wg UNLV.
+≈πr√≥d≈Ça zosta≈Çy uwolnione przez HP i UNLV w 2005 roku.
 
 %prep
 %setup -q
