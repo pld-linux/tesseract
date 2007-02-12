@@ -1,7 +1,7 @@
 # NOTE
 # - warnings at compile stage about pointer size on amd64
 Summary:	Tesseract Open Source OCR Engine
-Summary(pl.UTF-8):   Tesseract - silnik OCR o otwartych źródłach
+Summary(pl.UTF-8):	Tesseract - silnik OCR o otwartych źródłach
 Name:		tesseract
 Version:	1.02
 Release:	1
