@@ -10,6 +10,7 @@ License:	Apache Software License v2
 Group:		Applications/Graphics
 Source0:	http://tesseract-ocr.googlecode.com/files/%{name}-%{version}.tar.gz
 # Source0-md5:	c6f015f2f2c37b3e7e31b64eb295f798
+Patch0:		%{name}-globals.patch
 URL:		http://code.google.com/p/tesseract-ocr/
 BuildRequires:	automake
 BuildRequires:	libtiff-devel
@@ -27,6 +28,7 @@ latach 1985-1995. W 1995 roku był jednym z 3 najlepszych wg UNLV.
 
 %prep
 %setup -q -n %{name}-1.04
+%patch0 -p1
 
 %build
 cp -f /usr/share/automake/config.sub config
