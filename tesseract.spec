@@ -1,16 +1,16 @@
 # NOTE
 # - warnings at compile stage about pointer size on amd64
+# - what to do with all the headers and static libs? remove?
 Summary:	Tesseract Open Source OCR Engine
 Summary(pl.UTF-8):	Tesseract - silnik OCR o otwartych źródłach
 Name:		tesseract
-Version:	1.03
-Release:	2
+Version:	1.04b
+Release:	1
 License:	Apache Software License v2
 Group:		Applications/Graphics
-Source0:	http://dl.sourceforge.net/tesseract-ocr/%{name}-%{version}.tar.gz
-# Source0-md5:	8a191bff04b6f6bc908b3838bfc7f937
-Patch0:		%{name}-globals.patch
-URL:		http://sourceforge.net/projects/tesseract-ocr
+Source0:	http://tesseract-ocr.googlecode.com/files/%{name}-%{version}.tar.gz
+# Source0-md5:	c6f015f2f2c37b3e7e31b64eb295f798
+URL:		http://code.google.com/p/tesseract-ocr/
 BuildRequires:	automake
 BuildRequires:	libtiff-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -26,8 +26,7 @@ latach 1985-1995. W 1995 roku był jednym z 3 najlepszych wg UNLV.
 Źródła zostały uwolnione przez HP i UNLV w 2005 roku.
 
 %prep
-%setup -q
-%patch0 -p1
+%setup -q -n %{name}-1.04
 
 %build
 cp -f /usr/share/automake/config.sub config
@@ -49,3 +48,5 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/cntraining
 %attr(755,root,root) %{_bindir}/mftraining
 %attr(755,root,root) %{_bindir}/tesseract
+%dir %{_datadir}/tessdata
+%{_datadir}/tessdata/*
