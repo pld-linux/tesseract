@@ -1,11 +1,11 @@
-# NOTE
-# - warnings at compile stage about pointer size on amd64
-# - what to do with all the headers and static libs? remove?
+# TODO:
+# - warnings at compile stage about pointer size on amd64 - needs check
+# - build dynamic library, not the static one
 Summary:	Tesseract Open Source OCR Engine
 Summary(pl.UTF-8):	Tesseract - silnik OCR o otwartych źródłach
 Name:		tesseract
 Version:	2.00
-Release:	0.1
+Release:	0.9
 License:	Apache Software License v2
 Group:		Applications/Graphics
 Source0:	http://tesseract-ocr.googlecode.com/files/%{name}-%{version}.tar.gz
@@ -38,15 +38,84 @@ Silnik OCR o komercyjnej jakości oryginalnie stworzony przez HP w
 latach 1985-1995. W 1995 roku był jednym z 3 najlepszych wg UNLV.
 Źródła zostały uwolnione przez HP i UNLV w 2005 roku.
 
+%package lang-deu
+Summary:	German language data for Tesseract
+Group:		Applications/Graphics
+Requires:	%{name} = %{version}-%{release}
+Obsoletes:	%{name}-deu
+
+%description lang-deu
+The Tesseract deu package contains the data files required to
+recognize German language.
+
+%package lang-eng
+Summary:	English language data for Tesseract
+Group:		Applications/Graphics
+Requires:	%{name} = %{version}-%{release}
+Obsoletes:	%{name}-eng
+
+%description lang-eng
+The Tesseract eng package contains the data files required to
+recognize English language.
+
+%package lang-fra
+Summary:	French language data for Tesseract
+Group:		Applications/Graphics
+Requires:	%{name} = %{version}-%{release}
+Obsoletes:	%{name}-fra
+
+%description lang-fra
+The Tesseract fra package contains the data files required to
+recognize French language.
+
+%package lang-ita
+Summary:	Italian language data for Tesseract
+Group:		Applications/Graphics
+Requires:	%{name} = %{version}-%{release}
+Obsoletes:	%{name}-ita
+
+%description lang-ita
+The Tesseract ita package contains the data files required to
+recognize Italian language.
+
+%package lang-nld
+Summary:	Dutch language data for Tesseract
+Group:		Applications/Graphics
+Requires:	%{name} = %{version}-%{release}
+Obsoletes:	%{name}-nld
+
+%description lang-nld
+The Tesseract nld package contains the data files required to
+recognize Dutch language.
+
+%package lang-spa
+Summary:	Spanish language data for Tesseract
+Group:		Applications/Graphics
+Requires:	%{name} = %{version}-%{release}
+Obsoletes:	%{name}-spa
+
+%description lang-spa
+The Tesseract spa package contains the data files required to
+recognize Spanish language.
+
+%package devel
+Summary:	Tesseract - Development header files and libraries
+Summary(pl.UTF-8):	Tesseract - Pliki nagłówkowe i biblioteki dla programistów
+Group:          Development/Libraries
+
+%description devel
+This package contains the development header files and libraries
+necessary to develop applications using Tesseract.
+
 %prep
 %setup -q
 #%patch0 -p1
-tar zxf %{SOURCE1}
-tar xzf %{SOURCE2}
-tar xzf %{SOURCE3}
-tar xzf %{SOURCE4}
-tar xzf %{SOURCE5}
-tar xzf %{SOURCE6}
+tar -zxvf %{SOURCE1}
+tar -zxvf %{SOURCE2}
+tar -zxvf %{SOURCE3}
+tar -zxvf %{SOURCE4}
+tar -zxvf %{SOURCE5}
+tar -zxvf %{SOURCE6}
 
 %build
 cp -f /usr/share/automake/config.sub config
@@ -71,124 +140,38 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/unicharset_extractor
 %attr(755,root,root) %{_bindir}/wordlist2dawg
 %dir %{_datadir}/tessdata
-%{_datadir}/tessdata/*
+%{_datadir}/tessdata/confsets
+%dir %{_datadir}/tessdata/configs
+%{_datadir}/tessdata/configs/*
+%dir %{_datadir}/tessdata/tessconfigs
+%{_datadir}/tessdata/tessconfigs/*
 
-%package deu
-Summary:	German language data for Tesseract
-Group:		Applications/Graphics
-Requires:	tesseract >= 2.0
-
-%description deu
-The %{name}-%{version}.deu package contains the data files required to
-recognize German
-
-%files deu
+%files lang-deu
 %defattr(644,root,root,755)
-%{_datadir}/tessdata/deu.DangAmbigs
-%{_datadir}/tessdata/deu.freq-dawg
-%{_datadir}/tessdata/deu.inttemp
-%{_datadir}/tessdata/deu.normproto
-%{_datadir}/tessdata/deu.pffmtable
-%{_datadir}/tessdata/deu.unicharset
-%{_datadir}/tessdata/deu.user-words
-%{_datadir}/tessdata/deu.word-dawg
+%{_datadir}/tessdata/deu.*
 
-%package eng
-Summary:	English language data for Tesseract
-Group:		Applications/Graphics
-Requires:	tesseract >= 2.0
-
-%description eng
-The %{name}-%{version}.eng package contains the data files required to
-recognize English
-
-%files eng
+%files lang-eng
 %defattr(644,root,root,755)
-%{_datadir}/tessdata/eng.DangAmbigs
-%{_datadir}/tessdata/eng.freq-dawg
-%{_datadir}/tessdata/eng.inttemp
-%{_datadir}/tessdata/eng.normproto
-%{_datadir}/tessdata/eng.pffmtable
-%{_datadir}/tessdata/eng.unicharset
-%{_datadir}/tessdata/eng.user-words
-%{_datadir}/tessdata/eng.word-dawg
+%{_datadir}/tessdata/eng.*
 
-%package fra
-Summary:	French language data for Tesseract
-Group:		Applications/Graphics
-Requires:	tesseract >= 2.0
-
-%description fra
-The %{name}-%{version}.fra package contains the data files required to
-recognize French
-
-%files fra
+%files lang-fra
 %defattr(644,root,root,755)
-%{_datadir}/tessdata/fra.DangAmbigs
-%{_datadir}/tessdata/fra.freq-dawg
-%{_datadir}/tessdata/fra.inttemp
-%{_datadir}/tessdata/fra.normproto
-%{_datadir}/tessdata/fra.pffmtable
-%{_datadir}/tessdata/fra.unicharset
-%{_datadir}/tessdata/fra.user-words
-%{_datadir}/tessdata/fra.word-dawg
+%{_datadir}/tessdata/fra.*
 
-%package ita
-Summary:	Italian language data for Tesseract
-Group:		Applications/Graphics
-Requires:	tesseract >= 2.0
-
-%description ita
-The %{name}-%{version}.ita package contains the data files required to
-recognize Italian
-
-%files ita
+%files lang-ita
 %defattr(644,root,root,755)
-%{_datadir}/tessdata/ita.DangAmbigs
-%{_datadir}/tessdata/ita.freq-dawg
-%{_datadir}/tessdata/ita.inttemp
-%{_datadir}/tessdata/ita.normproto
-%{_datadir}/tessdata/ita.pffmtable
-%{_datadir}/tessdata/ita.unicharset
-%{_datadir}/tessdata/ita.user-words
-%{_datadir}/tessdata/ita.word-dawg
+%{_datadir}/tessdata/ita.*
 
-%package nld
-Summary:	Dutch language data for Tesseract
-Group:		Applications/Graphics
-Requires:	tesseract >= 2.0
-
-%description nld
-The %{name}-%{version}.nld package contains the data files required to
-recognize Dutch
-
-%files nld
+%files lang-nld
 %defattr(644,root,root,755)
-%{_datadir}/tessdata/nld.DangAmbigs
-%{_datadir}/tessdata/nld.freq-dawg
-%{_datadir}/tessdata/nld.inttemp
-%{_datadir}/tessdata/nld.normproto
-%{_datadir}/tessdata/nld.pffmtable
-%{_datadir}/tessdata/nld.unicharset
-%{_datadir}/tessdata/nld.user-words
-%{_datadir}/tessdata/nld.word-dawg
+%{_datadir}/tessdata/nld.*
 
-%package spa
-Summary:	Spanish language data for Tesseract
-Group:		Applications/Graphics
-Requires:	tesseract >= 2.0
-
-%description spa
-The %{name}-%{version}.spa package contains the data files required to
-recognize Spanish
-
-%files spa
+%files lang-spa
 %defattr(644,root,root,755)
-%{_datadir}/tessdata/spa.DangAmbigs
-%{_datadir}/tessdata/spa.freq-dawg
-%{_datadir}/tessdata/spa.inttemp
-%{_datadir}/tessdata/spa.normproto
-%{_datadir}/tessdata/spa.pffmtable
-%{_datadir}/tessdata/spa.unicharset
-%{_datadir}/tessdata/spa.user-words
-%{_datadir}/tessdata/spa.word-dawg
+%{_datadir}/tessdata/spa.*
+
+%files devel
+%defattr(644,root,root,755)
+%dir %{_includedir}/%{name}
+%{_includedir}/%{name}/*.h
+%{_libdir}/*.a
