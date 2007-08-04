@@ -120,7 +120,7 @@ Group:		Applications/Graphics
 Requires:	%{name} = %{version}-%{release}
 Obsoletes:	tesseract-nl
 
-%description lang-nld
+%description lang-nl
 This package contains the data files required to recognize Dutch
 language.
 
