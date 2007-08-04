@@ -38,65 +38,95 @@ Silnik OCR o komercyjnej jakości oryginalnie stworzony przez HP w
 latach 1985-1995. W 1995 roku był jednym z 3 najlepszych wg UNLV.
 Źródła zostały uwolnione przez HP i UNLV w 2005 roku.
 
-%package lang-deu
+%package lang-de
 Summary:	German language data for Tesseract
+Summary(pl.UTF-8):	Dane języka niemieckiego dla Tesseracta
 Group:		Applications/Graphics
 Requires:	%{name} = %{version}-%{release}
-Obsoletes:	%{name}-deu
+Obsoletes:	tesseract-deu
 
-%description lang-deu
-The Tesseract deu package contains the data files required to
-recognize German language.
+%description lang-de
+This package contains the data files required to recognize German
+language.
 
-%package lang-eng
+%description lang-de -l pl.UTF-8
+Ten pakiet zawiera pliki danych potrzebne do rozpoznawania języka
+niemieckiego.
+
+%package lang-en
 Summary:	English language data for Tesseract
+Summary(pl.UTF-8):	Dane języka angielskiego dla Tesseracta
 Group:		Applications/Graphics
 Requires:	%{name} = %{version}-%{release}
-Obsoletes:	%{name}-eng
+Obsoletes:	tesseract-eng
 
-%description lang-eng
-The Tesseract eng package contains the data files required to
-recognize English language.
+%description lang-en
+This package contains the data files required to recognize English
+language.
 
-%package lang-fra
+%description lang-en -l pl.UTF-8
+Ten pakiet zawiera pliki danych potrzebne do rozpoznawania języka
+angielskiego.
+
+%package lang-es
+Summary:	Spanish language data for Tesseract
+Summary(pl.UTF-8):	Dane języka hiszpańskiego dla Tesseracta
+Group:		Applications/Graphics
+Requires:	%{name} = %{version}-%{release}
+Obsoletes:	tesseract-spa
+
+%description lang-es
+This package contains the data files required to recognize Spanish
+language.
+
+%description lang-es -l pl.UTF-8
+Ten pakiet zawiera pliki danych potrzebne do rozpoznawania języka
+hiszpańskiego.
+
+%package lang-fr
 Summary:	French language data for Tesseract
+Summary(pl.UTF-8):	Dane języka francuskiego dla Tesseracta
 Group:		Applications/Graphics
 Requires:	%{name} = %{version}-%{release}
-Obsoletes:	%{name}-fra
+Obsoletes:	tesseract-fra
 
-%description lang-fra
-The Tesseract fra package contains the data files required to
-recognize French language.
+%description lang-fr
+This package contains the data files required to recognize French
+language.
 
-%package lang-ita
+%description lang-fr -l pl.UTF-8
+Ten pakiet zawiera pliki danych potrzebne do rozpoznawania języka
+francuskiego.
+
+%package lang-it
 Summary:	Italian language data for Tesseract
+Summary(pl.UTF-8):	Dane języka włoskiego dla Tesseracta
 Group:		Applications/Graphics
 Requires:	%{name} = %{version}-%{release}
-Obsoletes:	%{name}-ita
+Obsoletes:	tesseract-ita
 
-%description lang-ita
-The Tesseract ita package contains the data files required to
-recognize Italian language.
+%description lang-it
+This package contains the data files required to recognize Italian
+language.
 
-%package lang-nld
+%description lang-it -l pl.UTF-8
+Ten pakiet zawiera pliki danych potrzebne do rozpoznawania języka
+włoskiego.
+
+%package lang-nl
 Summary:	Dutch language data for Tesseract
+Summary(pl.UTF-8):	Dane języka holenderskiego dla Tesseracta
 Group:		Applications/Graphics
 Requires:	%{name} = %{version}-%{release}
-Obsoletes:	%{name}-nld
+Obsoletes:	tesseract-nl
 
 %description lang-nld
-The Tesseract nld package contains the data files required to
-recognize Dutch language.
+This package contains the data files required to recognize Dutch
+language.
 
-%package lang-spa
-Summary:	Spanish language data for Tesseract
-Group:		Applications/Graphics
-Requires:	%{name} = %{version}-%{release}
-Obsoletes:	%{name}-spa
-
-%description lang-spa
-The Tesseract spa package contains the data files required to
-recognize Spanish language.
+%description lang-nl -l pl.UTF-8
+Ten pakiet zawiera pliki danych potrzebne do rozpoznawania języka
+holenderskiego.
 
 %package devel
 Summary:	Tesseract - Development header files and libraries
@@ -110,12 +140,12 @@ necessary to develop applications using Tesseract.
 %prep
 %setup -q
 #%patch0 -p1
-tar -zxvf %{SOURCE1}
-tar -zxvf %{SOURCE2}
-tar -zxvf %{SOURCE3}
-tar -zxvf %{SOURCE4}
-tar -zxvf %{SOURCE5}
-tar -zxvf %{SOURCE6}
+tar xzf %{SOURCE1}
+tar xzf %{SOURCE2}
+tar xzf %{SOURCE3}
+tar xzf %{SOURCE4}
+tar xzf %{SOURCE5}
+tar xzf %{SOURCE6}
 
 %build
 cp -f /usr/share/automake/config.sub config
@@ -146,29 +176,29 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_datadir}/tessdata/tessconfigs
 %{_datadir}/tessdata/tessconfigs/*
 
-%files lang-deu
+%files lang-de
 %defattr(644,root,root,755)
 %{_datadir}/tessdata/deu.*
 
-%files lang-eng
+%files lang-en
 %defattr(644,root,root,755)
 %{_datadir}/tessdata/eng.*
 
-%files lang-fra
+%files lang-es
+%defattr(644,root,root,755)
+%{_datadir}/tessdata/spa.*
+
+%files lang-fr
 %defattr(644,root,root,755)
 %{_datadir}/tessdata/fra.*
 
-%files lang-ita
+%files lang-it
 %defattr(644,root,root,755)
 %{_datadir}/tessdata/ita.*
 
-%files lang-nld
+%files lang-nl
 %defattr(644,root,root,755)
 %{_datadir}/tessdata/nld.*
-
-%files lang-spa
-%defattr(644,root,root,755)
-%{_datadir}/tessdata/spa.*
 
 %files devel
 %defattr(644,root,root,755)
