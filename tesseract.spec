@@ -22,7 +22,6 @@ Source5:	http://tesseract-ocr.googlecode.com/files/%{name}-%{version}.spa.tar.gz
 # Source5-md5:	bc26a777b2384613895677cb8e61ca75
 Source6:	http://tesseract-ocr.googlecode.com/files/%{name}-%{version}.nld.tar.gz
 # Source6-md5:	b2f6ede182cea4bbfffd3b040533ce58
-Patch0:		%{name}-globals.patch
 URL:		http://code.google.com/p/tesseract-ocr/
 BuildRequires:	automake
 BuildRequires:	libtiff-devel
@@ -139,7 +138,6 @@ necessary to develop applications using Tesseract.
 
 %prep
 %setup -q
-#%patch0 -p1
 tar xzf %{SOURCE1}
 tar xzf %{SOURCE2}
 tar xzf %{SOURCE3}
