@@ -1,26 +1,29 @@
 # TODO:
 # - warnings at compile stage about pointer size on amd64 - needs check
 # - build dynamic library, not the static one
+#
+%define		lang_version	2.00
+
 Summary:	Tesseract Open Source OCR Engine
 Summary(pl.UTF-8):	Tesseract - silnik OCR o otwartych źródłach
 Name:		tesseract
-Version:	2.00
+Version:	2.01
 Release:	0.9
 License:	Apache Software License v2
 Group:		Applications/Graphics
 Source0:	http://tesseract-ocr.googlecode.com/files/%{name}-%{version}.tar.gz
-# Source0-md5:	6d68d940ed15c61300cb04019c30f46c
-Source1:	http://tesseract-ocr.googlecode.com/files/%{name}-%{version}.eng.tar.gz
+# Source0-md5:	fb0e6e7652b985049c11a4bc8e593885
+Source1:	http://tesseract-ocr.googlecode.com/files/%{name}-%{lang_version}.eng.tar.gz
 # Source1-md5:	b8291d6b3a63ce7879d688e845e341a9
-Source2:	http://tesseract-ocr.googlecode.com/files/%{name}-%{version}.fra.tar.gz
+Source2:	http://tesseract-ocr.googlecode.com/files/%{name}-%{lang_version}.fra.tar.gz
 # Source2-md5:	64896b462e62572a3708bb461820126c
-Source3:	http://tesseract-ocr.googlecode.com/files/%{name}-%{version}.ita.tar.gz
+Source3:	http://tesseract-ocr.googlecode.com/files/%{name}-%{lang_version}.ita.tar.gz
 # Source3-md5:	2759e1dae91a989a43490ff4c2253a4b
-Source4:	http://tesseract-ocr.googlecode.com/files/%{name}-%{version}.deu.tar.gz
+Source4:	http://tesseract-ocr.googlecode.com/files/%{name}-%{lang_version}.deu.tar.gz
 # Source4-md5:	609d91b1ae3759a756b819b5d8403653
-Source5:	http://tesseract-ocr.googlecode.com/files/%{name}-%{version}.spa.tar.gz
+Source5:	http://tesseract-ocr.googlecode.com/files/%{name}-%{lang_version}.spa.tar.gz
 # Source5-md5:	bc26a777b2384613895677cb8e61ca75
-Source6:	http://tesseract-ocr.googlecode.com/files/%{name}-%{version}.nld.tar.gz
+Source6:	http://tesseract-ocr.googlecode.com/files/%{name}-%{lang_version}.nld.tar.gz
 # Source6-md5:	b2f6ede182cea4bbfffd3b040533ce58
 URL:		http://code.google.com/p/tesseract-ocr/
 BuildRequires:	automake
