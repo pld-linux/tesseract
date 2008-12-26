@@ -1,0 +1,20 @@
+--- tesseract-2.03/Makefile.am~	2008-04-22 19:33:57.000000000 +0200
++++ tesseract-2.03/Makefile.am	2008-12-26 12:00:08.254182338 +0100
+@@ -1,5 +1,5 @@
+ # TODO(luc) Add 'doc' to this list when ready
+-SUBDIRS = ccstruct ccutil classify cutil dict pageseg image textord viewer wordrec ccmain training tessdata testing dlltest java
++SUBDIRS = ccstruct ccutil classify cutil dict pageseg image textord viewer wordrec ccmain training tessdata testing dlltest
+ 
+ EXTRA_DIST = eurotext.tif phototest.tif ReleaseNotes tesseract.spec config \
+       tesseract.dsp tesseract.dsw tesseract.vcproj tesseract.sln \
+--- tesseract-2.03/Makefile.in~	2008-04-22 19:36:27.000000000 +0200
++++ tesseract-2.03/Makefile.in	2008-12-26 12:04:01.680825552 +0100
+@@ -76,7 +76,7 @@
+ RANLIB = @RANLIB@
+ VERSION = @VERSION@
+ 
+-SUBDIRS = ccstruct ccutil classify cutil dict pageseg image textord viewer wordrec ccmain training tessdata testing dlltest java
++SUBDIRS = ccstruct ccutil classify cutil dict pageseg image textord viewer wordrec ccmain training tessdata testing dlltest
+ 
+ EXTRA_DIST = eurotext.tif phototest.tif ReleaseNotes tesseract.spec config       tesseract.dsp tesseract.dsw tesseract.vcproj tesseract.sln       StdAfx.cpp StdAfx.h tessdll.cpp tessdll.h tessdll.dsp tessdll.vcproj
+ 
