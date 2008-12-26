@@ -25,6 +25,8 @@ Source5:	http://tesseract-ocr.googlecode.com/files/%{name}-%{lang_version}.spa.t
 # Source5-md5:	bc26a777b2384613895677cb8e61ca75
 Source6:	http://tesseract-ocr.googlecode.com/files/%{name}-%{lang_version}.nld.tar.gz
 # Source6-md5:	b2f6ede182cea4bbfffd3b040533ce58
+Patch0:		%{name}-no-java.patch
+Patch1:		%{name}-gcc43.patch
 URL:		http://code.google.com/p/tesseract-ocr/
 BuildRequires:	automake
 BuildRequires:	libtiff-devel
@@ -147,6 +149,8 @@ tar xzf %{SOURCE3}
 tar xzf %{SOURCE4}
 tar xzf %{SOURCE5}
 tar xzf %{SOURCE6}
+%patch0 -p1
+%patch1 -p1
 
 %build
 cp -f /usr/share/automake/config.sub config
