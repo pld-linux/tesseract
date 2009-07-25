@@ -7,12 +7,12 @@
 Summary:	Tesseract Open Source OCR Engine
 Summary(pl.UTF-8):	Tesseract - silnik OCR o otwartych źródłach
 Name:		tesseract
-Version:	2.03
+Version:	2.04
 Release:	1
 License:	Apache v2.0
 Group:		Applications/Graphics
 Source0:	http://tesseract-ocr.googlecode.com/files/%{name}-%{version}.tar.gz
-# Source0-md5:	5777b70b11df16c1ac9aa155d7cfc553
+# Source0-md5:	b44eba1a9f4892ac62e484c807fe0533
 Source1:	http://tesseract-ocr.googlecode.com/files/%{name}-%{lang_version}.eng.tar.gz
 # Source1-md5:	b8291d6b3a63ce7879d688e845e341a9
 Source2:	http://tesseract-ocr.googlecode.com/files/%{name}-%{lang_version}.fra.tar.gz
@@ -26,7 +26,7 @@ Source5:	http://tesseract-ocr.googlecode.com/files/%{name}-%{lang_version}.spa.t
 Source6:	http://tesseract-ocr.googlecode.com/files/%{name}-%{lang_version}.nld.tar.gz
 # Source6-md5:	b2f6ede182cea4bbfffd3b040533ce58
 Patch0:		%{name}-no-java.patch
-Patch1:		%{name}-gcc43.patch
+Patch1:		%{name}-gcc44.patch
 URL:		http://code.google.com/p/tesseract-ocr/
 BuildRequires:	automake
 BuildRequires:	libtiff-devel
