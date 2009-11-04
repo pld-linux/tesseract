@@ -30,6 +30,7 @@ Patch1:		%{name}-gcc44.patch
 URL:		http://code.google.com/p/tesseract-ocr/
 BuildRequires:	automake
 BuildRequires:	libtiff-devel
+BuildRequires:	libstdc++-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
