@@ -3,15 +3,13 @@
 Summary:	Tesseract Open Source OCR Engine
 Summary(pl.UTF-8):	Tesseract - silnik OCR o otwartych źródłach
 Name:		tesseract
-Version:	3.00
+Version:	3.01
 Release:	1
 License:	Apache v2.0
 Group:		Applications/Graphics
 #Source0Download: http://code.google.com/p/tesseract-ocr/downloads/list
 Source0:	http://tesseract-ocr.googlecode.com/files/%{name}-%{version}.tar.gz
-# Source0-md5:	cc812a261088ea0c3d2da735be35d09f
-Patch0:		%{name}-missing.patch
-Patch1:		%{name}-link.patch
+# Source0-md5:	1ba496e51a42358fb9d3ffe781b2d20a
 URL:		http://code.google.com/p/tesseract-ocr/
 BuildRequires:	autoconf >= 2.50
 BuildRequires:	automake
@@ -63,8 +61,6 @@ Statyczne biblioteki Tesseracta.
 
 %prep
 %setup -q
-%patch0 -p1
-%patch1 -p1
 
 %build
 %{__libtoolize}
@@ -93,75 +89,28 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/tesseract
 %attr(755,root,root) %{_bindir}/unicharset_extractor
 %attr(755,root,root) %{_bindir}/wordlist2dawg
-%attr(755,root,root) %{_libdir}/libtesseract_api.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libtesseract_api.so.3
-%attr(755,root,root) %{_libdir}/libtesseract_ccstruct.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libtesseract_ccstruct.so.3
-%attr(755,root,root) %{_libdir}/libtesseract_ccutil.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libtesseract_ccutil.so.3
-%attr(755,root,root) %{_libdir}/libtesseract_classify.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libtesseract_classify.so.3
-%attr(755,root,root) %{_libdir}/libtesseract_cutil.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libtesseract_cutil.so.3
-%attr(755,root,root) %{_libdir}/libtesseract_dict.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libtesseract_dict.so.3
-%attr(755,root,root) %{_libdir}/libtesseract_image.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libtesseract_image.so.3
-%attr(755,root,root) %{_libdir}/libtesseract_main.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libtesseract_main.so.3
-%attr(755,root,root) %{_libdir}/libtesseract_textord.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libtesseract_textord.so.3
-%attr(755,root,root) %{_libdir}/libtesseract_training.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libtesseract_training.so.3
-%attr(755,root,root) %{_libdir}/libtesseract_viewer.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libtesseract_viewer.so.3
-%attr(755,root,root) %{_libdir}/libtesseract_wordrec.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libtesseract_wordrec.so.3
+%attr(755,root,root) %{_libdir}/libtesseract.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libtesseract.so.3
 %dir %{_datadir}/tessdata
 %dir %{_datadir}/tessdata/configs
 %{_datadir}/tessdata/configs/*
 %dir %{_datadir}/tessdata/tessconfigs
 %{_datadir}/tessdata/tessconfigs/*
+%{_mandir}/man1/cntraining.1*
+%{_mandir}/man1/combine_tessdata.1*
+%{_mandir}/man1/mftraining.1*
+%{_mandir}/man1/tesseract.1*
+%{_mandir}/man1/unicharset_extractor.1*
+%{_mandir}/man1/wordlist2dawg.1*
 
 %files devel
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/libtesseract_api.so
-%attr(755,root,root) %{_libdir}/libtesseract_ccstruct.so
-%attr(755,root,root) %{_libdir}/libtesseract_ccutil.so
-%attr(755,root,root) %{_libdir}/libtesseract_classify.so
-%attr(755,root,root) %{_libdir}/libtesseract_cutil.so
-%attr(755,root,root) %{_libdir}/libtesseract_dict.so
-%attr(755,root,root) %{_libdir}/libtesseract_image.so
-%attr(755,root,root) %{_libdir}/libtesseract_main.so
-%attr(755,root,root) %{_libdir}/libtesseract_textord.so
-%attr(755,root,root) %{_libdir}/libtesseract_training.so
-%attr(755,root,root) %{_libdir}/libtesseract_viewer.so
-%attr(755,root,root) %{_libdir}/libtesseract_wordrec.so
-%{_libdir}/libtesseract_api.la
-%{_libdir}/libtesseract_ccstruct.la
-%{_libdir}/libtesseract_ccutil.la
-%{_libdir}/libtesseract_classify.la
-%{_libdir}/libtesseract_cutil.la
-%{_libdir}/libtesseract_dict.la
-%{_libdir}/libtesseract_image.la
-%{_libdir}/libtesseract_main.la
-%{_libdir}/libtesseract_textord.la
-%{_libdir}/libtesseract_training.la
-%{_libdir}/libtesseract_viewer.la
-%{_libdir}/libtesseract_wordrec.la
+%attr(755,root,root) %{_libdir}/libtesseract.so
+%{_libdir}/libtesseract.la
 %{_includedir}/%{name}
+%{_mandir}/man5/unicharambigs.5*
+%{_mandir}/man5/unicharset.5*
 
 %files static
 %defattr(644,root,root,755)
-%{_libdir}/libtesseract_api.a
-%{_libdir}/libtesseract_ccstruct.a
-%{_libdir}/libtesseract_ccutil.a
-%{_libdir}/libtesseract_classify.a
-%{_libdir}/libtesseract_cutil.a
-%{_libdir}/libtesseract_dict.a
-%{_libdir}/libtesseract_image.a
-%{_libdir}/libtesseract_main.a
-%{_libdir}/libtesseract_textord.a
-%{_libdir}/libtesseract_training.a
-%{_libdir}/libtesseract_viewer.a
-%{_libdir}/libtesseract_wordrec.a
+%{_libdir}/libtesseract.a
