@@ -4,7 +4,7 @@ Summary:	Tesseract Open Source OCR Engine
 Summary(pl.UTF-8):	Tesseract - silnik OCR o otwartych źródłach
 Name:		tesseract
 Version:	3.01
-Release:	1
+Release:	2
 License:	Apache v2.0
 Group:		Applications/Graphics
 #Source0Download: http://code.google.com/p/tesseract-ocr/downloads/list
@@ -77,6 +77,8 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
+rm -f $RPM_BUILD_ROOT%{_libdir}/libtesseract.la
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -106,7 +108,6 @@ rm -rf $RPM_BUILD_ROOT
 %files devel
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libtesseract.so
-%{_libdir}/libtesseract.la
 %{_includedir}/%{name}
 %{_mandir}/man5/unicharambigs.5*
 %{_mandir}/man5/unicharset.5*
