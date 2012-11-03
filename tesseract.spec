@@ -3,19 +3,18 @@
 Summary:	Tesseract Open Source OCR Engine
 Summary(pl.UTF-8):	Tesseract - silnik OCR o otwartych źródłach
 Name:		tesseract
-Version:	3.01
-Release:	3
+Version:	3.02.02
+Release:	1
 License:	Apache v2.0
 Group:		Applications/Graphics
 #Source0Download: http://code.google.com/p/tesseract-ocr/downloads/list
-Source0:	http://tesseract-ocr.googlecode.com/files/%{name}-%{version}.tar.gz
-# Source0-md5:	1ba496e51a42358fb9d3ffe781b2d20a
+Source0:	http://tesseract-ocr.googlecode.com/files/%{name}-ocr-%{version}.tar.gz
+# Source0-md5:	26adc8154f0e815053816825dde246e6
 URL:		http://code.google.com/p/tesseract-ocr/
 BuildRequires:	autoconf >= 2.50
 BuildRequires:	automake
 BuildRequires:	leptonlib-devel
 BuildRequires:	libstdc++-devel
-BuildRequires:	libtiff-devel
 BuildRequires:	libtool
 Suggests:	tesseract-data >= 3
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -37,7 +36,6 @@ Group:          Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 Requires:	leptonlib-devel
 Requires:	libstdc++-devel
-Requires:	libtiff-devel
 
 %description devel
 This package contains the development header files necessary to
@@ -60,7 +58,7 @@ Static Tesseract libraries.
 Statyczne biblioteki Tesseracta.
 
 %prep
-%setup -q
+%setup -q -n %{name}-ocr
 
 %build
 %{__libtoolize}
@@ -77,15 +75,20 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
+# test program?
+%{__rm} $RPM_BUILD_ROOT%{_bindir}/classifier_tester
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
 %doc AUTHORS COPYING ChangeLog README ReleaseNotes
+%attr(755,root,root) %{_bindir}/ambiguous_words
 %attr(755,root,root) %{_bindir}/cntraining
 %attr(755,root,root) %{_bindir}/combine_tessdata
+%attr(755,root,root) %{_bindir}/dawg2wordlist
 %attr(755,root,root) %{_bindir}/mftraining
+%attr(755,root,root) %{_bindir}/shapeclustering
 %attr(755,root,root) %{_bindir}/tesseract
 %attr(755,root,root) %{_bindir}/unicharset_extractor
 %attr(755,root,root) %{_bindir}/wordlist2dawg
@@ -96,9 +99,12 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/tessdata/configs/*
 %dir %{_datadir}/tessdata/tessconfigs
 %{_datadir}/tessdata/tessconfigs/*
+%{_mandir}/man1/ambiguous_words.1*
 %{_mandir}/man1/cntraining.1*
 %{_mandir}/man1/combine_tessdata.1*
+%{_mandir}/man1/dawg2wordlist.1*
 %{_mandir}/man1/mftraining.1*
+%{_mandir}/man1/shapeclustering.1*
 %{_mandir}/man1/tesseract.1*
 %{_mandir}/man1/unicharset_extractor.1*
 %{_mandir}/man1/wordlist2dawg.1*
@@ -108,6 +114,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libtesseract.so
 %{_libdir}/libtesseract.la
 %{_includedir}/%{name}
+%{_pkgconfigdir}/tesseract.pc
 %{_mandir}/man5/unicharambigs.5*
 %{_mandir}/man5/unicharset.5*
 
