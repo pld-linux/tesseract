@@ -4,7 +4,7 @@ Summary:	Tesseract Open Source OCR Engine
 Summary(pl.UTF-8):	Tesseract - silnik OCR o otwartych źródłach
 Name:		tesseract
 Version:	3.02.02
-Release:	2
+Release:	3
 License:	Apache v2.0
 Group:		Applications/Graphics
 #Source0Download: http://code.google.com/p/tesseract-ocr/downloads/list
@@ -81,6 +81,9 @@ rm -rf $RPM_BUILD_ROOT
 %{__rm} $RPM_BUILD_ROOT%{_bindir}/classifier_tester
 %clean
 rm -rf $RPM_BUILD_ROOT
+
+%post   -p /sbin/ldconfig
+%postun -p /sbin/ldconfig
 
 %files
 %defattr(644,root,root,755)
