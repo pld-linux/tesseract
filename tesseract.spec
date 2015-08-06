@@ -3,18 +3,16 @@
 Summary:	Tesseract Open Source OCR Engine
 Summary(pl.UTF-8):	Tesseract - silnik OCR o otwartych źródłach
 Name:		tesseract
-Version:	3.02.02
-Release:	7
+Version:	3.04.00
+Release:	0.1
 License:	Apache v2.0
 Group:		Applications/Graphics
-#Source0Download: http://code.google.com/p/tesseract-ocr/downloads/list
-Source0:	http://tesseract-ocr.googlecode.com/files/%{name}-ocr-%{version}.tar.gz
-# Source0-md5:	26adc8154f0e815053816825dde246e6
-Patch0:		format-security.patch
+Source0:	https://github.com/tesseract-ocr/tesseract/archive/%{version}.tar.gz
+# Source0-md5:	078130b9c7d28c558a0e49d432505864
 URL:		http://code.google.com/p/tesseract-ocr/
 BuildRequires:	autoconf >= 2.50
 BuildRequires:	automake
-BuildRequires:	leptonlib-devel
+BuildRequires:	leptonlib-devel >= 1.71
 BuildRequires:	libstdc++-devel
 BuildRequires:	libtool
 Suggests:	tesseract-data >= 3
@@ -59,8 +57,7 @@ Static Tesseract libraries.
 Statyczne biblioteki Tesseracta.
 
 %prep
-%setup -q -n %{name}-ocr
-%patch0 -p1
+%setup -q
 
 %build
 %{__libtoolize}
@@ -79,6 +76,8 @@ rm -rf $RPM_BUILD_ROOT
 
 # test program?
 %{__rm} $RPM_BUILD_ROOT%{_bindir}/classifier_tester
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/libtesseract.la
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -117,7 +116,6 @@ rm -rf $RPM_BUILD_ROOT
 %files devel
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libtesseract.so
-%{_libdir}/libtesseract.la
 %{_includedir}/%{name}
 %{_pkgconfigdir}/tesseract.pc
 %{_mandir}/man5/unicharambigs.5*
