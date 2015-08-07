@@ -33,7 +33,7 @@ latach 1985-1995. W 1995 roku był jednym z 3 najlepszych wg UNLV.
 
 %package training
 Summary:	Tesseract training tools
-Summary(pl.UTF-8):	Pliki treningowe tesseracta
+Summary(pl.UTF-8):	Narzędzia treningowe Tesseracta
 Group:          Applications/Graphics
 Requires:	%{name} = %{version}
 
@@ -41,7 +41,7 @@ Requires:	%{name} = %{version}
 This package contains the Tesseract training tools.
 
 %description training -l pl.UTF-8
-Ten pakiet zawiera programy do trenowania tesseracta.
+Ten pakiet zawiera programy do trenowania Tesseracta.
 
 %package devel
 Summary:	Header files for Tesseract libraries
