@@ -74,7 +74,7 @@ Statyczne biblioteki Tesseracta.
 %prep
 %setup -q
 # workaround for 'off_t undefined when -std=c++11' workaround
-%ifarch %{x32}
+%ifarch x32
 %{__sed} -e 's|typedef long off_t;|//typedef long off_t;|' -i ccutil/scanutils.cpp
 %endif
 
