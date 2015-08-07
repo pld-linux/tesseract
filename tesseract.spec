@@ -117,6 +117,7 @@ rm -rf $RPM_BUILD_ROOT
 %files training
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/ambiguous_words
+%attr(755,root,root) %{_bindir}/classifier_tester
 %attr(755,root,root) %{_bindir}/cntraining
 %attr(755,root,root) %{_bindir}/combine_tessdata
 %attr(755,root,root) %{_bindir}/dawg2wordlist
