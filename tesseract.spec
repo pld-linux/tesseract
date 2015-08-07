@@ -12,9 +12,12 @@ Source0:	https://github.com/tesseract-ocr/tesseract/archive/%{version}.tar.gz
 URL:		http://code.google.com/p/tesseract-ocr/
 BuildRequires:	autoconf >= 2.50
 BuildRequires:	automake
+BuildRequires:	cairo-devel
+BuildRequires:	libicu-devel
 BuildRequires:	leptonlib-devel >= 1.71
 BuildRequires:	libstdc++-devel
 BuildRequires:	libtool
+BuildRequires:	pango-devel
 Suggests:	tesseract-data >= 3
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -67,6 +70,7 @@ Statyczne biblioteki Tesseracta.
 %{__automake}
 %configure
 %{__make}
+%{__make} training
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -74,8 +78,11 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
+%{__make} training-install \
+	DESTDIR=$RPM_BUILD_ROOT
+
 # test program?
-%{__rm} $RPM_BUILD_ROOT%{_bindir}/classifier_tester
+#%{__rm} $RPM_BUILD_ROOT%{_bindir}/classifier_tester
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/libtesseract.la
 
 %clean
@@ -87,22 +94,18 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc AUTHORS COPYING ChangeLog README ReleaseNotes
-%attr(755,root,root) %{_bindir}/ambiguous_words
-%attr(755,root,root) %{_bindir}/cntraining
-%attr(755,root,root) %{_bindir}/combine_tessdata
-%attr(755,root,root) %{_bindir}/dawg2wordlist
-%attr(755,root,root) %{_bindir}/mftraining
-%attr(755,root,root) %{_bindir}/shapeclustering
-%attr(755,root,root) %{_bindir}/tesseract
-%attr(755,root,root) %{_bindir}/unicharset_extractor
-%attr(755,root,root) %{_bindir}/wordlist2dawg
-%attr(755,root,root) %{_libdir}/libtesseract.so.*.*.*
+#%attr(755,root,root) %{_bindir}/ambiguous_words
+#%attr(755,root,root) %{_bindir}/cntraining
+#%attr(755,root,root) %{_bindir}/combine_tessdata
+#%attr(755,root,root) %{_bindir}/dawg2wordlist
+#%attr(755,root,root) %{_bindir}/mftraining
+#%attr(755,root,root) %{_bindir}/shapeclustering
+#%attr(755,root,root) %{_bindir}/tesseract
+#%attr(755,root,root) %{_bindir}/unicharset_extractor
+#%attr(755,root,root) %{_bindir}/wordlist2dawg
+#%attr(755,root,root) %{_libdir}/libtesseract.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libtesseract.so.3
-%dir %{_datadir}/tessdata
-%dir %{_datadir}/tessdata/configs
-%{_datadir}/tessdata/configs/*
-%dir %{_datadir}/tessdata/tessconfigs
-%{_datadir}/tessdata/tessconfigs/*
+%{_datadir}/tessdata
 %{_mandir}/man1/ambiguous_words.1*
 %{_mandir}/man1/cntraining.1*
 %{_mandir}/man1/combine_tessdata.1*
