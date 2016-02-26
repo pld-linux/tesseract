@@ -1,22 +1,31 @@
 # TODO:
 # - warnings at compile stage about pointer size on amd64 - needs check
+#
+# Conditional build:
+%bcond_without	gomp	# OpenMP support
+%bcond_with	opencl	# OpenCL support
+#
 Summary:	Tesseract Open Source OCR Engine
 Summary(pl.UTF-8):	Tesseract - silnik OCR o otwartych źródłach
 Name:		tesseract
-Version:	3.04.00
-Release:	2
+Version:	3.04.01
+Release:	1
 License:	Apache v2.0
 Group:		Applications/Graphics
-Source0:	https://github.com/tesseract-ocr/tesseract/archive/%{version}.tar.gz
-# Source0-md5:	078130b9c7d28c558a0e49d432505864
-URL:		http://code.google.com/p/tesseract-ocr/
+Source0:	https://github.com/tesseract-ocr/tesseract/archive/%{version}/%{name}-%{version}.tar.gz
+# Source0-md5:	645a21effcf2825a3473849d72a7fd90
+Patch0:		%{name}-opencl.patch
+URL:		https://github.com/tesseract-ocr/
+%{?with_opencl:BuildRequires:	OpenCL-devel}
 BuildRequires:	autoconf >= 2.50
 BuildRequires:	automake
 BuildRequires:	cairo-devel
 BuildRequires:	leptonlib-devel >= 1.71
+BuildRequires:	libgomp-devel
 BuildRequires:	libicu-devel
-BuildRequires:	libstdc++-devel
-BuildRequires:	libtool
+BuildRequires:	libstdc++-devel >= 6:4.7
+BuildRequires:	libtiff-devel
+BuildRequires:	libtool >= 2:2
 BuildRequires:	pango-devel
 Suggests:	tesseract-data >= 3
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -73,10 +82,7 @@ Statyczne biblioteki Tesseracta.
 
 %prep
 %setup -q
-# workaround for 'off_t undefined when -std=c++11' workaround
-%ifarch x32
-%{__sed} -e 's|typedef long off_t;|//typedef long off_t;|' -i ccutil/scanutils.cpp
-%endif
+%patch0 -p1
 
 %build
 %{__libtoolize}
@@ -84,7 +90,9 @@ Statyczne biblioteki Tesseracta.
 %{__autoconf}
 %{__autoheader}
 %{__automake}
-%configure
+%configure \
+	%{?with_opencl:--enable-opencl} \
+	%{!?with_gomp:--disable-openmp}
 %{__make}
 %{__make} training
 
@@ -107,7 +115,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc AUTHORS COPYING ChangeLog README ReleaseNotes
+%doc AUTHORS COPYING ChangeLog README.md ReleaseNotes
 %attr(755,root,root) %{_bindir}/tesseract
 %attr(755,root,root) %{_libdir}/libtesseract.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libtesseract.so.3
