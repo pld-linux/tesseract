@@ -2,7 +2,7 @@
 # - warnings at compile stage about pointer size on amd64 - needs check
 #
 # Conditional build:
-%bcond_without	gomp	# OpenMP support
+%bcond_without	openmp	# OpenMP support
 %bcond_with	opencl	# OpenCL support
 #
 Summary:	Tesseract Open Source OCR Engine
@@ -21,7 +21,7 @@ BuildRequires:	autoconf >= 2.50
 BuildRequires:	automake
 BuildRequires:	cairo-devel
 BuildRequires:	leptonlib-devel >= 1.71
-BuildRequires:	libgomp-devel
+%{?with_openmp:BuildRequires:	libgomp-devel}
 BuildRequires:	libicu-devel
 BuildRequires:	libstdc++-devel >= 6:4.7
 BuildRequires:	libtiff-devel
@@ -92,7 +92,7 @@ Statyczne biblioteki Tesseracta.
 %{__automake}
 %configure \
 	%{?with_opencl:--enable-opencl} \
-	%{!?with_gomp:--disable-openmp}
+	%{!?with_openmp:--disable-openmp}
 %{__make}
 %{__make} training
 
