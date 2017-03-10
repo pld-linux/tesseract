@@ -9,7 +9,7 @@ Summary:	Tesseract Open Source OCR Engine
 Summary(pl.UTF-8):	Tesseract - silnik OCR o otwartych źródłach
 Name:		tesseract
 Version:	3.04.01
-Release:	2
+Release:	3
 License:	Apache v2.0
 Group:		Applications/Graphics
 Source0:	https://github.com/tesseract-ocr/tesseract/archive/%{version}/%{name}-%{version}.tar.gz
