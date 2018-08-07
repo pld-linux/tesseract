@@ -7,14 +7,15 @@
 #
 Summary:	Tesseract Open Source OCR Engine
 Summary(pl.UTF-8):	Tesseract - silnik OCR o otwartych źródłach
+%define	_beta	beta.4
 Name:		tesseract
-Version:	3.05.01
-Release:	1
+Version:	4.0.0
+Release:	0.%{_beta}.1
 License:	Apache v2.0
 Group:		Applications/Graphics
 #Source0Download: https://github.com/tesseract-ocr/tesseract/releases
-Source0:	https://github.com/tesseract-ocr/tesseract/archive/%{version}/%{name}-%{version}.tar.gz
-# Source0-md5:	0ac91d57fd35a47f93a9e47b29b63c75
+Source0:	https://github.com/tesseract-ocr/tesseract/archive/%{version}-%{_beta}/%{name}-%{version}-%{_beta}.tar.gz
+# Source0-md5:	9984be13fd64872fb236a60475f5fec6
 Patch0:		%{name}-opencl.patch
 URL:		https://github.com/tesseract-ocr/
 %{?with_opencl:BuildRequires:	OpenCL-devel}
@@ -44,7 +45,7 @@ latach 1985-1995. W 1995 roku był jednym z 3 najlepszych wg UNLV.
 %package training
 Summary:	Tesseract training tools
 Summary(pl.UTF-8):	Narzędzia treningowe Tesseracta
-Group:          Applications/Graphics
+Group:		Applications/Graphics
 Requires:	%{name} = %{version}
 
 %description training
@@ -56,7 +57,7 @@ Ten pakiet zawiera programy do trenowania Tesseracta.
 %package devel
 Summary:	Header files for Tesseract libraries
 Summary(pl.UTF-8):	Pliki nagłówkowe bibliotek Tesseracta
-Group:          Development/Libraries
+Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 Requires:	leptonlib-devel
 Requires:	libstdc++-devel
@@ -72,7 +73,7 @@ wykorzystujących API Tesseracta.
 %package static
 Summary:	Static Tesseract libraries
 Summary(pl.UTF-8):	Statyczne biblioteki Tesseracta
-Group:          Development/Libraries
+Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 
 %description static
@@ -82,8 +83,8 @@ Static Tesseract libraries.
 Statyczne biblioteki Tesseracta.
 
 %prep
-%setup -q
-%patch0 -p1
+%setup -q -n %{name}-%{version}-%{_beta}
+#%patch0 -p1
 
 %build
 %{__libtoolize}
@@ -119,7 +120,7 @@ rm -rf $RPM_BUILD_ROOT
 %doc AUTHORS COPYING ChangeLog README.md
 %attr(755,root,root) %{_bindir}/tesseract
 %attr(755,root,root) %{_libdir}/libtesseract.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libtesseract.so.3
+%attr(755,root,root) %ghost %{_libdir}/libtesseract.so.4
 %{_datadir}/tessdata
 %{_mandir}/man1/tesseract.1*
 
@@ -128,8 +129,12 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/ambiguous_words
 %attr(755,root,root) %{_bindir}/classifier_tester
 %attr(755,root,root) %{_bindir}/cntraining
+%attr(755,root,root) %{_bindir}/combine_lang_model
 %attr(755,root,root) %{_bindir}/combine_tessdata
 %attr(755,root,root) %{_bindir}/dawg2wordlist
+%attr(755,root,root) %{_bindir}/lstmeval
+%attr(755,root,root) %{_bindir}/lstmtraining
+%attr(755,root,root) %{_bindir}/merge_unicharsets
 %attr(755,root,root) %{_bindir}/mftraining
 %attr(755,root,root) %{_bindir}/set_unicharset_properties
 %attr(755,root,root) %{_bindir}/shapeclustering
@@ -137,11 +142,18 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/unicharset_extractor
 %attr(755,root,root) %{_bindir}/wordlist2dawg
 %{_mandir}/man1/ambiguous_words.1*
+%{_mandir}/man1/classifier_tester.1*
 %{_mandir}/man1/cntraining.1*
+%{_mandir}/man1/combine_lang_model.1*
 %{_mandir}/man1/combine_tessdata.1*
 %{_mandir}/man1/dawg2wordlist.1*
+%{_mandir}/man1/lstmeval.1*
+%{_mandir}/man1/lstmtraining.1*
+%{_mandir}/man1/merge_unicharsets.1*
 %{_mandir}/man1/mftraining.1*
+%{_mandir}/man1/set_unicharset_properties.1*
 %{_mandir}/man1/shapeclustering.1*
+%{_mandir}/man1/text2image.1*
 %{_mandir}/man1/unicharset_extractor.1*
 %{_mandir}/man1/wordlist2dawg.1*
 
