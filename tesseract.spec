@@ -16,7 +16,6 @@ Group:		Applications/Graphics
 #Source0Download: https://github.com/tesseract-ocr/tesseract/releases
 Source0:	https://github.com/tesseract-ocr/tesseract/archive/%{version}-%{_beta}/%{name}-%{version}-%{_beta}.tar.gz
 # Source0-md5:	9984be13fd64872fb236a60475f5fec6
-Patch0:		%{name}-opencl.patch
 URL:		https://github.com/tesseract-ocr/
 %{?with_opencl:BuildRequires:	OpenCL-devel}
 BuildRequires:	autoconf >= 2.59
@@ -84,7 +83,6 @@ Statyczne biblioteki Tesseracta.
 
 %prep
 %setup -q -n %{name}-%{version}-%{_beta}
-#%patch0 -p1
 
 %build
 %{__libtoolize}
