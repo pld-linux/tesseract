@@ -5,17 +5,19 @@
 %bcond_without	openmp	# OpenMP support
 %bcond_with	opencl	# OpenCL support
 #
+%define	rel	2
 Summary:	Tesseract Open Source OCR Engine
 Summary(pl.UTF-8):	Tesseract - silnik OCR o otwartych źródłach
 %define	_beta	beta.4
 Name:		tesseract
 Version:	4.0.0
-Release:	0.%{_beta}.1
+Release:	0.%{_beta}.%{rel}
 License:	Apache v2.0
 Group:		Applications/Graphics
 #Source0Download: https://github.com/tesseract-ocr/tesseract/releases
 Source0:	https://github.com/tesseract-ocr/tesseract/archive/%{version}-%{_beta}/%{name}-%{version}-%{_beta}.tar.gz
 # Source0-md5:	9984be13fd64872fb236a60475f5fec6
+Patch0:		a2x.patch
 URL:		https://github.com/tesseract-ocr/
 %{?with_opencl:BuildRequires:	OpenCL-devel}
 BuildRequires:	autoconf >= 2.59
@@ -83,6 +85,7 @@ Statyczne biblioteki Tesseracta.
 
 %prep
 %setup -q -n %{name}-%{version}-%{_beta}
+%patch0 -p1
 
 %build
 %{__libtoolize}
