@@ -1,5 +1,9 @@
 # TODO:
 # - warnings at compile stage about pointer size on amd64 - needs check
+# - warning: Installed (but unpackaged) file(s) found:
+#        /usr/bin/language-specific.sh
+#        /usr/bin/tesstrain.sh
+#        /usr/bin/tesstrain_utils.sh
 #
 # Conditional build:
 %bcond_without	openmp	# OpenMP support
@@ -9,7 +13,7 @@ Summary(pl.UTF-8):	Tesseract - silnik OCR o otwartych źródłach
 %define	_beta	beta.4
 Name:		tesseract
 Version:	4.0.0
-Release:	1
+Release:	2
 License:	Apache v2.0
 Group:		Applications/Graphics
 #Source0Download: https://github.com/tesseract-ocr/tesseract/releases
