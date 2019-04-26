@@ -22,16 +22,17 @@ Source0:	https://github.com/tesseract-ocr/tesseract/archive/%{version}/%{name}-%
 Patch0:		a2x.patch
 URL:		https://github.com/tesseract-ocr/
 %{?with_opencl:BuildRequires:	OpenCL-devel}
-BuildRequires:	autoconf >= 2.59
+BuildRequires:	autoconf >= 2.63
 BuildRequires:	automake
 BuildRequires:	cairo-devel
 BuildRequires:	leptonlib-devel >= 1.74
 %{?with_openmp:BuildRequires:	libgomp-devel}
-BuildRequires:	libicu-devel
+BuildRequires:	libicu-devel >= 52.1
 BuildRequires:	libstdc++-devel >= 6:4.7
 BuildRequires:	libtiff-devel
 BuildRequires:	libtool >= 2:2
-BuildRequires:	pango-devel
+BuildRequires:	pango-devel >= 1:1.22.0
+Requires:	leptonlib >= 1.74
 Suggests:	tesseract-data >= 3
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -49,7 +50,8 @@ latach 1985-1995. W 1995 roku był jednym z 3 najlepszych wg UNLV.
 Summary:	Tesseract training tools
 Summary(pl.UTF-8):	Narzędzia treningowe Tesseracta
 Group:		Applications/Graphics
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{version}-%{release}
+Requires:	pango >= 1:1.22.0
 
 %description training
 This package contains the Tesseract training tools.
@@ -62,8 +64,8 @@ Summary:	Header files for Tesseract libraries
 Summary(pl.UTF-8):	Pliki nagłówkowe bibliotek Tesseracta
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
-Requires:	leptonlib-devel
-Requires:	libstdc++-devel
+Requires:	leptonlib-devel >= 1.74
+Requires:	libstdc++-devel >= 6:4.7
 
 %description devel
 This package contains the development header files necessary to
