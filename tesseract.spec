@@ -1,4 +1,5 @@
 # TODO:
+# - tensorflow support
 # - warnings at compile stage about pointer size on amd64 - needs check
 # - warning: Installed (but unpackaged) file(s) found:
 #        /usr/bin/language-specific.sh
@@ -11,16 +12,16 @@
 Summary:	Tesseract Open Source OCR Engine
 Summary(pl.UTF-8):	Tesseract - silnik OCR o otwartych źródłach
 Name:		tesseract
-Version:	4.1.3
-Release:	3
+Version:	5.3.1
+Release:	1
 License:	Apache v2.0
 Group:		Applications/Graphics
 #Source0Download: https://github.com/tesseract-ocr/tesseract/releases
 Source0:	https://github.com/tesseract-ocr/tesseract/archive/%{version}/%{name}-%{version}.tar.gz
-# Source0-md5:	aee77b783feddf81feb46c6c8a979917
+# Source0-md5:	39c2d8d7a3efa2265f8fcf4f27f76652
 URL:		https://github.com/tesseract-ocr/
 %{?with_opencl:BuildRequires:	OpenCL-devel}
-BuildRequires:	autoconf >= 2.63
+BuildRequires:	autoconf >= 2.69
 BuildRequires:	automake
 BuildRequires:	cairo-devel
 BuildRequires:	curl-devel
@@ -28,10 +29,10 @@ BuildRequires:	leptonlib-devel >= 1.74
 BuildRequires:	libarchive-devel
 %{?with_openmp:BuildRequires:	libgomp-devel}
 BuildRequires:	libicu-devel >= 52.1
-BuildRequires:	libstdc++-devel >= 6:4.7
+BuildRequires:	libstdc++-devel >= 6:7
 BuildRequires:	libtiff-devel
 BuildRequires:	libtool >= 2:2
-BuildRequires:	pango-devel >= 1:1.22.0
+BuildRequires:	pango-devel >= 1:1.38.0
 Requires:	leptonlib >= 1.74
 Suggests:	tesseract-data >= 3
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -51,7 +52,7 @@ Summary:	Tesseract training tools
 Summary(pl.UTF-8):	Narzędzia treningowe Tesseracta
 Group:		Applications/Graphics
 Requires:	%{name} = %{version}-%{release}
-Requires:	pango >= 1:1.22.0
+Requires:	pango >= 1:1.38.0
 
 %description training
 This package contains the Tesseract training tools.
@@ -67,7 +68,7 @@ Requires:	%{name} = %{version}-%{release}
 Requires:	curl-devel
 Requires:	leptonlib-devel >= 1.74
 Requires:	libarchive-devel
-Requires:	libstdc++-devel >= 6:4.7
+Requires:	libstdc++-devel >= 6:7
 
 %description devel
 This package contains the development header files necessary to
@@ -127,7 +128,7 @@ rm -rf $RPM_BUILD_ROOT
 %doc AUTHORS ChangeLog README.md
 %attr(755,root,root) %{_bindir}/tesseract
 %attr(755,root,root) %{_libdir}/libtesseract.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libtesseract.so.4
+%attr(755,root,root) %ghost %{_libdir}/libtesseract.so.5
 %{_datadir}/tessdata
 %{_mandir}/man1/tesseract.1*
 
