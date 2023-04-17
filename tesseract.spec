@@ -1,10 +1,5 @@
 # TODO:
 # - tensorflow support
-# - warnings at compile stage about pointer size on amd64 - needs check
-# - warning: Installed (but unpackaged) file(s) found:
-#        /usr/bin/language-specific.sh
-#        /usr/bin/tesstrain.sh
-#        /usr/bin/tesstrain_utils.sh
 #
 # Conditional build:
 %bcond_without	openmp	# OpenMP support
@@ -13,7 +8,7 @@ Summary:	Tesseract Open Source OCR Engine
 Summary(pl.UTF-8):	Tesseract - silnik OCR o otwartych źródłach
 Name:		tesseract
 Version:	5.3.1
-Release:	1
+Release:	2
 License:	Apache v2.0
 Group:		Applications/Graphics
 #Source0Download: https://github.com/tesseract-ocr/tesseract/releases
@@ -108,6 +103,7 @@ Statyczne biblioteki Tesseracta.
 
 %install
 rm -rf $RPM_BUILD_ROOT
+install -d $RPM_BUILD_ROOT%{_datadir}/tessdata/script
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
@@ -129,7 +125,11 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/tesseract
 %attr(755,root,root) %{_libdir}/libtesseract.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libtesseract.so.5
-%{_datadir}/tessdata
+%dir %{_datadir}/tessdata
+%{_datadir}/tessdata/configs
+%dir %{_datadir}/tessdata/script
+%{_datadir}/tessdata/tessconfigs
+%{_datadir}/tessdata/pdf.ttf
 %{_mandir}/man1/tesseract.1*
 
 %files training
