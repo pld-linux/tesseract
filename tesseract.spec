@@ -16,6 +16,7 @@ Source0:	https://github.com/tesseract-ocr/tesseract/archive/%{version}/%{name}-%
 # Source0-md5:	39c2d8d7a3efa2265f8fcf4f27f76652
 URL:		https://github.com/tesseract-ocr/
 %{?with_opencl:BuildRequires:	OpenCL-devel}
+BuildRequires:	asciidoc
 BuildRequires:	autoconf >= 2.69
 BuildRequires:	automake
 BuildRequires:	cairo-devel
@@ -27,6 +28,7 @@ BuildRequires:	libicu-devel >= 52.1
 BuildRequires:	libstdc++-devel >= 6:7
 BuildRequires:	libtiff-devel
 BuildRequires:	libtool >= 2:2
+BuildRequires:	libxslt-progs
 BuildRequires:	pango-devel >= 1:1.38.0
 Requires:	leptonlib >= 1.74
 Suggests:	tesseract-data >= 3
