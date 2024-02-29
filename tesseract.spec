@@ -16,6 +16,7 @@ Group:		Applications/Graphics
 #Source0Download: https://github.com/tesseract-ocr/tesseract/releases
 Source0:	https://github.com/tesseract-ocr/tesseract/archive/%{version}/%{name}-%{version}.tar.gz
 # Source0-md5:	53de961804ccbcb83b73122f721d8f83
+Patch0:		neon-detect.patch
 URL:		https://github.com/tesseract-ocr/
 %{?with_opencl:BuildRequires:	OpenCL-devel}
 BuildRequires:	asciidoc
@@ -92,6 +93,7 @@ Statyczne biblioteki Tesseracta.
 
 %prep
 %setup -q
+%patch0 -p1
 
 %build
 %{__libtoolize}
