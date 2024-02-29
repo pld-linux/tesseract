@@ -2,8 +2,9 @@
 # - tensorflow support
 #
 # Conditional build:
-%bcond_without	openmp	# OpenMP support
-%bcond_with	opencl	# OpenCL support
+%bcond_without	openmp		# OpenMP support
+%bcond_with	opencl		# OpenCL support
+%bcond_without	static_libs	# static library
 
 Summary:	Tesseract Open Source OCR Engine
 Summary(pl.UTF-8):	Tesseract - silnik OCR o otwartych źródłach
@@ -31,6 +32,7 @@ BuildRequires:	libtiff-devel
 BuildRequires:	libtool >= 2:2
 BuildRequires:	libxslt-progs
 BuildRequires:	pango-devel >= 1:1.38.0
+BuildRequires:	rpmbuild(macros) >= 1.527
 Requires:	leptonlib >= 1.74
 Suggests:	tesseract-data >= 3
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -100,7 +102,8 @@ Statyczne biblioteki Tesseracta.
 %configure \
 	%{?with_opencl:--enable-opencl} \
 	%{!?with_openmp:--disable-openmp} \
-	--disable-silent-rules
+	--disable-silent-rules \
+	%{__enable_disable static_libs static}
 %{__make}
 %{__make} training
 
@@ -176,6 +179,8 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man5/unicharambigs.5*
 %{_mandir}/man5/unicharset.5*
 
+%if %{with static_libs}
 %files static
 %defattr(644,root,root,755)
 %{_libdir}/libtesseract.a
+%endif
