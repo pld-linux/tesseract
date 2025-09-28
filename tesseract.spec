@@ -9,13 +9,13 @@
 Summary:	Tesseract Open Source OCR Engine
 Summary(pl.UTF-8):	Tesseract - silnik OCR o otwartych źródłach
 Name:		tesseract
-Version:	5.3.4
-Release:	2
+Version:	5.5.1
+Release:	1
 License:	Apache v2.0
 Group:		Applications/Graphics
 #Source0Download: https://github.com/tesseract-ocr/tesseract/releases
 Source0:	https://github.com/tesseract-ocr/tesseract/archive/%{version}/%{name}-%{version}.tar.gz
-# Source0-md5:	53de961804ccbcb83b73122f721d8f83
+# Source0-md5:	dbc5e603ddde25bdec84c30ac47a2afb
 Patch0:		neon-detect.patch
 URL:		https://github.com/tesseract-ocr/
 %{?with_opencl:BuildRequires:	OpenCL-devel}
@@ -132,7 +132,7 @@ rm -rf $RPM_BUILD_ROOT
 %doc AUTHORS ChangeLog README.md
 %attr(755,root,root) %{_bindir}/tesseract
 %attr(755,root,root) %{_libdir}/libtesseract.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libtesseract.so.5
+%ghost %{_libdir}/libtesseract.so.5
 %dir %{_datadir}/tessdata
 %{_datadir}/tessdata/configs
 %dir %{_datadir}/tessdata/script
@@ -175,8 +175,8 @@ rm -rf $RPM_BUILD_ROOT
 
 %files devel
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/libtesseract.so
-%{_includedir}/%{name}
+%{_libdir}/libtesseract.so
+%{_includedir}/tesseract
 %{_pkgconfigdir}/tesseract.pc
 %{_mandir}/man5/unicharambigs.5*
 %{_mandir}/man5/unicharset.5*
