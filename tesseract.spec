@@ -9,13 +9,13 @@
 Summary:	Tesseract Open Source OCR Engine
 Summary(pl.UTF-8):	Tesseract - silnik OCR o otwartych źródłach
 Name:		tesseract
-Version:	5.5.1
-Release:	2
+Version:	5.5.2
+Release:	1
 License:	Apache v2.0
 Group:		Applications/Graphics
 #Source0Download: https://github.com/tesseract-ocr/tesseract/releases
 Source0:	https://github.com/tesseract-ocr/tesseract/archive/%{version}/%{name}-%{version}.tar.gz
-# Source0-md5:	dbc5e603ddde25bdec84c30ac47a2afb
+# Source0-md5:	ee8efb2b71dc79eb56cd02ced84a31d5
 Patch0:		neon-detect.patch
 URL:		https://github.com/tesseract-ocr/
 %{?with_opencl:BuildRequires:	OpenCL-devel}
