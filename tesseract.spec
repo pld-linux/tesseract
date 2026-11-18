@@ -9,13 +9,13 @@
 Summary:	Tesseract Open Source OCR Engine
 Summary(pl.UTF-8):	Tesseract - silnik OCR o otwartych źródłach
 Name:		tesseract
-Version:	5.5.2
-Release:	2
+Version:	5.5.4
+Release:	1
 License:	Apache v2.0
 Group:		Applications/Graphics
 #Source0Download: https://github.com/tesseract-ocr/tesseract/releases
 Source0:	https://github.com/tesseract-ocr/tesseract/archive/%{version}/%{name}-%{version}.tar.gz
-# Source0-md5:	ee8efb2b71dc79eb56cd02ced84a31d5
+# Source0-md5:	ad5c5e9ecca2a6c7f71c31b2b400d92b
 Patch0:		neon-detect.patch
 URL:		https://github.com/tesseract-ocr/
 %{?with_opencl:BuildRequires:	OpenCL-devel}
@@ -24,7 +24,7 @@ BuildRequires:	autoconf >= 2.69
 BuildRequires:	automake
 BuildRequires:	cairo-devel
 BuildRequires:	curl-devel
-BuildRequires:	leptonlib-devel >= 1.74
+BuildRequires:	leptonlib-devel >= 1.80
 BuildRequires:	libarchive-devel
 %{?with_openmp:BuildRequires:	libgomp-devel}
 BuildRequires:	libicu-devel >= 52.1
@@ -34,7 +34,7 @@ BuildRequires:	libtool >= 2:2
 BuildRequires:	libxslt-progs
 BuildRequires:	pango-devel >= 1:1.38.0
 BuildRequires:	rpmbuild(macros) >= 1.527
-Requires:	leptonlib >= 1.74
+Requires:	leptonlib%{?_isa} >= 1.80
 Suggests:	tesseract-data >= 3
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -52,8 +52,8 @@ latach 1985-1995. W 1995 roku był jednym z 3 najlepszych wg UNLV.
 Summary:	Tesseract training tools
 Summary(pl.UTF-8):	Narzędzia treningowe Tesseracta
 Group:		Applications/Graphics
-Requires:	%{name} = %{version}-%{release}
-Requires:	pango >= 1:1.38.0
+Requires:	%{name}%{?_isa} = %{version}-%{release}
+Requires:	pango%{?_isa} >= 1:1.38.0
 
 %description training
 This package contains the Tesseract training tools.
@@ -65,11 +65,11 @@ Ten pakiet zawiera programy do trenowania Tesseracta.
 Summary:	Header files for Tesseract libraries
 Summary(pl.UTF-8):	Pliki nagłówkowe bibliotek Tesseracta
 Group:		Development/Libraries
-Requires:	%{name} = %{version}-%{release}
-Requires:	curl-devel
-Requires:	leptonlib-devel >= 1.74
-Requires:	libarchive-devel
-Requires:	libstdc++-devel >= 6:7
+Requires:	%{name}%{?_isa} = %{version}-%{release}
+Requires:	curl-devel%{?_isa}
+Requires:	leptonlib-devel%{?_isa} >= 1.80
+Requires:	libarchive-devel%{?_isa}
+Requires:	libstdc++-devel%{?_isa} >= 6:7
 
 %description devel
 This package contains the development header files necessary to
@@ -83,7 +83,7 @@ wykorzystujących API Tesseracta.
 Summary:	Static Tesseract libraries
 Summary(pl.UTF-8):	Statyczne biblioteki Tesseracta
 Group:		Development/Libraries
-Requires:	%{name}-devel = %{version}-%{release}
+Requires:	%{name}-devel%{?_isa} = %{version}-%{release}
 
 %description static
 Static Tesseract libraries.
@@ -97,7 +97,7 @@ Statyczne biblioteki Tesseracta.
 
 %build
 %{__libtoolize}
-%{__aclocal}
+%{__aclocal} -I m4
 %{__autoconf}
 %{__autoheader}
 %{__automake}
@@ -129,9 +129,9 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc AUTHORS ChangeLog README.md
+%doc AUTHORS ChangeLog README.md SECURITY.md
 %attr(755,root,root) %{_bindir}/tesseract
-%attr(755,root,root) %{_libdir}/libtesseract.so.*.*.*
+%{_libdir}/libtesseract.so.*.*.*
 %ghost %{_libdir}/libtesseract.so.5
 %dir %{_datadir}/tessdata
 %{_datadir}/tessdata/configs
